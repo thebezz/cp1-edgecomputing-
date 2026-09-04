@@ -1,0 +1,133 @@
+{
+    "version": 1,
+    "author": "Flavio Marques",
+    "editor": "wokwi",
+    "parts": [
+        {
+            "type": "board-esp32-devkit-c-v4",
+            "id": "esp",
+            "top": 0,
+            "left": 0,
+            "attrs": {}
+        },
+        {
+            "type": "wokwi-dht22",
+            "id": "dht1",
+            "top": -18.9,
+            "left": -149.4,
+            "attrs": {}
+        },
+        {
+            "type": "wokwi-buzzer",
+            "id": "bz1",
+            "top": -12.3,
+            "left": 244.5,
+            "rotate": 90,
+            "attrs": {
+                "volume": "0.1"
+            }
+        },
+        {
+            "type": "wokwi-led",
+            "id": "led1",
+            "top": 142.8,
+            "left": 313.8,
+            "rotate": 90,
+            "attrs": {
+                "color": "red"
+            }
+        },
+        {
+            "type": "wokwi-resistor",
+            "id": "r1",
+            "top": 167.15,
+            "left": 220.8,
+            "attrs": {
+                "value": "1000"
+            }
+        }
+    ],
+    "connections": [
+        [
+            "esp:TX",
+            "$serialMonitor:RX",
+            "",
+            []
+        ],
+        [
+            "esp:RX",
+            "$serialMonitor:TX",
+            "",
+            []
+        ],
+        [
+            "dht1:VCC",
+            "esp:5V",
+            "red",
+            [
+                "v0"
+            ]
+        ],
+        [
+            "dht1:GND",
+            "esp:GND.1",
+            "black",
+            [
+                "v0"
+            ]
+        ],
+        [
+            "dht1:SDA",
+            "esp:15",
+            "green",
+            [
+                "v144",
+                "h259.3",
+                "v-57.6"
+            ]
+        ],
+        [
+            "bz1:1",
+            "esp:GND.2",
+            "black",
+            [
+                "h0"
+            ]
+        ],
+        [
+            "bz1:2",
+            "esp:23",
+            "green",
+            [
+                "h0"
+            ]
+        ],
+        [
+            "r1:2",
+            "led1:A",
+            "green",
+            [
+                "v0"
+            ]
+        ],
+        [
+            "led1:C",
+            "esp:GND.3",
+            "orange",
+            [
+                "h-57.6",
+                "v-47.6"
+            ]
+        ],
+        [
+            "esp:21",
+            "r1:1",
+            "magenta",
+            [
+                "h91.24",
+                "v9.6"
+            ]
+        ]
+    ],
+    "dependencies": {}
+}

@@ -1,133 +1,38 @@
 {
-    "version": 1,
-    "author": "Flavio Marques",
-    "editor": "wokwi",
-    "parts": [
-        {
-            "type": "board-esp32-devkit-c-v4",
-            "id": "esp",
-            "top": 0,
-            "left": 0,
-            "attrs": {}
-        },
-        {
-            "type": "wokwi-dht22",
-            "id": "dht1",
-            "top": -18.9,
-            "left": -149.4,
-            "attrs": {}
-        },
-        {
-            "type": "wokwi-buzzer",
-            "id": "bz1",
-            "top": -12.3,
-            "left": 244.5,
-            "rotate": 90,
-            "attrs": {
-                "volume": "0.1"
-            }
-        },
-        {
-            "type": "wokwi-led",
-            "id": "led1",
-            "top": 142.8,
-            "left": 313.8,
-            "rotate": 90,
-            "attrs": {
-                "color": "red"
-            }
-        },
-        {
-            "type": "wokwi-resistor",
-            "id": "r1",
-            "top": 167.15,
-            "left": 220.8,
-            "attrs": {
-                "value": "1000"
-            }
-        }
-    ],
-    "connections": [
-        [
-            "esp:TX",
-            "$serialMonitor:RX",
-            "",
-            []
-        ],
-        [
-            "esp:RX",
-            "$serialMonitor:TX",
-            "",
-            []
-        ],
-        [
-            "dht1:VCC",
-            "esp:5V",
-            "red",
-            [
-                "v0"
-            ]
-        ],
-        [
-            "dht1:GND",
-            "esp:GND.1",
-            "black",
-            [
-                "v0"
-            ]
-        ],
-        [
-            "dht1:SDA",
-            "esp:15",
-            "green",
-            [
-                "v144",
-                "h259.3",
-                "v-57.6"
-            ]
-        ],
-        [
-            "bz1:1",
-            "esp:GND.2",
-            "black",
-            [
-                "h0"
-            ]
-        ],
-        [
-            "bz1:2",
-            "esp:23",
-            "green",
-            [
-                "h0"
-            ]
-        ],
-        [
-            "r1:2",
-            "led1:A",
-            "green",
-            [
-                "v0"
-            ]
-        ],
-        [
-            "led1:C",
-            "esp:GND.3",
-            "orange",
-            [
-                "h-57.6",
-                "v-47.6"
-            ]
-        ],
-        [
-            "esp:21",
-            "r1:1",
-            "magenta",
-            [
-                "h91.24",
-                "v9.6"
-            ]
-        ]
-    ],
-    "dependencies": {}
+  "version": 1,
+  "author": "FrioLog - No de Borda Inteligente",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -105.3, "left": -140, "attrs": { "temperature": "5", "humidity": "55" } },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": 185, "left": -250, "attrs": { "lux": "5" } },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -80, "left": 200, "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "bz1", "top": 120, "left": 230, "attrs": { "volume": "0.3" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": -140, "left": 360, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led1", "top": -90, "left": 400, "attrs": { "color": "blue", "label": "Compressor" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "dht1:VCC", "esp:3V3", "red", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [] ],
+    [ "dht1:SDA", "esp:15", "green", [] ],
+
+    [ "ldr1:VCC", "esp:3V3", "red", [] ],
+    [ "ldr1:GND", "esp:GND.1", "black", [] ],
+    [ "ldr1:AO", "esp:34", "orange", [] ],
+
+    [ "relay1:VCC", "esp:5V", "red", [] ],
+    [ "relay1:GND", "esp:GND.2", "black", [] ],
+    [ "relay1:IN", "esp:26", "purple", [] ],
+    [ "relay1:COM", "esp:3V3", "red", [] ],
+    [ "relay1:NO", "r1:1", "blue", [] ],
+    [ "r1:2", "led1:A", "blue", [] ],
+    [ "led1:C", "esp:GND.2", "black", [] ],
+
+    [ "bz1:1", "esp:GND.2", "black", [] ],
+    [ "bz1:2", "esp:25", "gold", [] ]
+  ],
+  "dependencies": {}
 }
